@@ -63,7 +63,7 @@ sudo nano /etc/environment
 
 add Following line to end of document and save:
 ~~~
-	JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64"
+JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64"
 ~~~
 
 Next input these commands on the console.
@@ -142,11 +142,9 @@ cd /opt/tomcat/webapps/ROOT/
 sudo nano Random.jsp
 ~~~
 
-Place this in the file.
-
-~~~
 Enter the following lines in the file and save:
 
+~~~
 <%@ page language="java" contentType="text/html"%>
 <%@ page import="java.text.*,java.lang.Math" %>
 <html>
@@ -212,11 +210,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-		import random
-		return str(random.randint(1,1000001))
+  import random
+  return str(random.randint(1,1000001))
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8081)
+  app.run(host='0.0.0.0', port=8081)
 ~~~
 
 Next Run the script to make sure there are no problems.
