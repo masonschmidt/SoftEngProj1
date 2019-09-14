@@ -1,5 +1,8 @@
 # SoftEngProj1
 
+Here the instruction for starting a server for both java and python. If you want
+you can start both servers on the same machine by following them back to back.
+
 ## VM Setup
 What is needed:
 	Access to Google Cloud Platform
@@ -39,6 +42,7 @@ Click SSH under connect on your created instance and allow the window to pop up
 and transfer keys to your instance.
 
 Commands:
+~~~
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install default-jdk
 sudo groupadd tomcat
@@ -54,17 +58,25 @@ sudo chmod g+x conf
 sudo chown -R tomcat webapps/ work/ temp/ logs/
 sudo update-java-alternatives -l
 sudo nano /etc/environment
+~~~
 
-________________________________________________________________________________
+
 add Following line to end of document and save:
+~~~
 	JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64"
-________________________________________________________________________________
+~~~
 
+Next input these commands on the console.
+
+~~~
 source /etc/environment
 echo $JAVA_HOME
 sudo nano /etc/systemd/system/tomcat.service
+~~~
 
-________________________________________________________________________________
+Add This to the file tomcat.service
+
+~~~
 [Unit]
 Description=Apache Tomcat Web Application Container
 After=network.target
@@ -90,33 +102,49 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
-________________________________________________________________________________
+~~~
 
+Save and go back to the console
+
+~~~
 sudo systemctl daemon-reload
 sudo systemctl start tomcat
 sudo systemctl status tomcat.service
+~~~
 
-________________________________________________________________________________
+### Check if Tomcat is running.
 Ensure TOMCAT is running!!!!! Any issues can be found in /opt/tomcat/logs.
 To do this, enter the following lines:
+
+~~~
 sudo chown -R [Username]:[Username] /opt/tomcat
 cat /opt/tomcat/logs/catalina.out
+~~~
 
 Check the log and ensure you enter the following line after checking:
+~~~
 sudo chown -R tomcat /opt/tomcat
---------------------------------------------------------------------------------
+~~~
 
-check if you did a good job by:
+### Creating Java File and running server
+
+check if you did a good job by using the following command. The external address
+is the ip of your VM, which you can find on the VM instances page in compute engine.
+~~~
 curl -g -6 "http://extrenaladdress:8080/"
-________________________________________________________________________________
+~~~
 
-cat /opt/tomcat/logs/catalina.out
-curl -g -6 "http://104.154.90.93:8080"
+Next create the jsp file.
+
+~~~
 sudo chown -R glen5641:glen5641 /opt/tomcat/
 cd /opt/tomcat/webapps/ROOT/
 sudo nano Random.jsp
+~~~
 
-________________________________________________________________________________
+Place this in the file.
+
+~~~
 Enter the following lines in the file and save:
 
 <%@ page language="java" contentType="text/html"%>
@@ -130,16 +158,35 @@ Enter the following lines in the file and save:
 	<h1><%= random_num %></h1>
 </body>
 </html>
-________________________________________________________________________________
+~~~
 
+Save and go back to the command line.
+
+~~~
 cd ../../
 sudo chown -R tomcat /opt/tomcat
 sudo systemctl stop tomcat
 sudo systemctl daemon-reload
 sudo systemctl start tomcat
+~~~
 
+Your server should be running! Go to you browser and type in
+htttp://externaladdress:8080/ to access the random number.
 
 ## Python setup with nginx and uwsgi
+
+
+### Navigate to VM
+If you haven't already.
+Use the top left menu to navigate back over to VM instances through the Compute
+engine.
+Click SSH under connect on your created instance and allow the window to pop up
+and transfer keys to your instance.
+
+### Server setup.
+Enter these commands, username:username require the username for the VM.
+
+~~~
 sudo add-apt-repository ppa:nginx/stable
 sudo apt-get update
 sudo apt-get upgrade
@@ -149,14 +196,17 @@ sudo chown -R ubuntu:ubuntu /var/www/demoapp/
 cd /var/www/demoapp/
 sudo apt-get install python-virtualenv
 virtualenv venv
-sudo chown -R glen5641:glen5641 /var/www/demoapp/
+sudo chown -R username:username /var/www/demoapp/
 virtualenv venv
 . venv/bin/activate
 pip install flask
 sudo ufw allow 8081
 nano hello.py
+~~~
 
-________________________________________________________________________________
+Enter the in the file.
+
+~~~
 from flask import Flask
 app = Flask(__name__)
 
@@ -167,15 +217,26 @@ def hello():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8081)
-________________________________________________________________________________
+~~~
 
+Next Run the script to make sure there are no problems.
+
+~~~
 python hello.py
+~~~
+
+Now to continue.
+
+~~~
 sudo apt-get install build-essential python python-dev
 pip install uwsgi
 sudo rm /etc/nginx/sites-enabled/default
 nano demoapp_nginx.conf
+~~~
 
-________________________________________________________________________________
+Enter this in the file.
+
+~~~
 server {
     listen      80;
     server_name localhost;
@@ -188,14 +249,20 @@ server {
         uwsgi_pass unix:/var/www/demoapp/demoapp_uwsgi.sock;
     }
 }
-________________________________________________________________________________
+~~~
 
+Save and go back to the console.
+
+~~~
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf /etc/nginx/conf.d/
 sudo /etc/init.d/nginx restart
 nano demoapp_uwsgi.ini
+~~~
 
-________________________________________________________________________________
+Place this in the file.
+
+~~~
 [uwsgi]
 #application's base folder
 base = /var/www/demoapp
@@ -218,22 +285,26 @@ callable = app
 
 #location of log files
 logto = /var/log/uwsgi/%n.log
-________________________________________________________________________________
+~~~
 
+Save and go back to the console.
+
+~~~
 sudo mkdir -p /var/log/uwsgi
 sudo chown -R ubuntu:ubuntu /var/log/uwsgi
-uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 sudo chown -R glen5641:glen5641 /var/log/uwsgi
 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
-history
+~~~
 
----------------------------------------------------------------
-To restart server after closing
-Python Server:
+## Restarting a python server.
+~~~
 cd /var/www/demoapp
 sudo /etc/init.d/nginx start
 source venv/bin/activate
 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
+~~~
 
-Tomcat Server:
+## Restarting a Java server.
+~~~
 sudo systemctl start tomcat
+~~~
