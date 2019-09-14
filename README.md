@@ -137,7 +137,7 @@ curl -g -6 "http://extrenaladdress:8080/"
 Next create the jsp file.
 
 ~~~
-sudo chown -R glen5641:glen5641 /opt/tomcat/
+sudo chown -R [Username]:[Username] /opt/tomcat/
 cd /opt/tomcat/webapps/ROOT/
 sudo nano Random.jsp
 ~~~
@@ -171,7 +171,7 @@ sudo systemctl start tomcat
 ~~~
 
 Your server should be running! Go to you browser and type in
-htttp://externaladdress:8080/ to access the random number.
+htttp://externaladdress:8080/Random.jsp to access the random number.
 
 ## Python setup with nginx and uwsgi
 
@@ -184,7 +184,7 @@ Click SSH under connect on your created instance and allow the window to pop up
 and transfer keys to your instance.
 
 ### Server setup.
-Enter these commands, username:username require the username for the VM.
+Enter these commands, username:username requires the username for the VM.
 
 ~~~
 sudo add-apt-repository ppa:nginx/stable
@@ -292,9 +292,11 @@ Save and go back to the console.
 ~~~
 sudo mkdir -p /var/log/uwsgi
 sudo chown -R ubuntu:ubuntu /var/log/uwsgi
-sudo chown -R glen5641:glen5641 /var/log/uwsgi
+sudo chown -R username:username /var/log/uwsgi
 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 ~~~
+
+To test if it is up and running go to http://externaladdress/
 
 ## Restarting a python server.
 ~~~
