@@ -4,23 +4,23 @@ Here the instruction for starting a server for both java and python. If you want
 you can start both servers on the same machine by following them back to back.
 
 ## VM Setup
-What is needed:
-	Access to Google Cloud Platform
-	Computer Able to Connect to Virtual Machine
-	Available Space for a Virtual Machine
+What is needed:  
+Access to Google Cloud Platform  
+Computer Able to Connect to Virtual Machine  
+Available Space for a Virtual Machine
 
-Visit Google Cloud Platform
-Click 3 Lines at Top Left of the Page
+Visit Google Cloud Platform  
+Click 3 Lines at Top Left of the Page  
 Hover your mouse over “Compute Engine” item and Click VM instances from pop-up
 menu.
 
-Click “CREATE INSTANCE” from VM instances Page
-Name your instance any name
-	Specify the Machine Type as g1-small(1 vCPU, 1.7 GB memory)
-	Change the Boot Disk Option to Ubuntu 18.04 LTS
-	Select the Following Radio Button “Allow full access to all Cloud APIs”
-	Select the Following Checkboxes “Allow HTTP and HTTPS traffic”
-	Create
+Click “CREATE INSTANCE” from VM instances Page  
+Name your instance any name  
+Specify the Machine Type as g1-small(1 vCPU, 1.7 GB memory)  
+Change the Boot Disk Option to Ubuntu 18.04 LTS  
+Select the Following Radio Button “Allow full access to all Cloud APIs”  
+Select the Following Checkboxes “Allow HTTP and HTTPS traffic”  
+Create
 
 Open the Menu back up at top left and scroll down the menu and hover
 “VPC NETWORK” and click External IP addresses.
@@ -28,18 +28,18 @@ At the External IP addresses page, select where your instance says Ephemeral
 and change to static. Give it a cool name.
 
 ## Java Setup with tomcat
-The left of the page should display a submenu, click "Firewall rules".
-Click "CREATE FIREWALL RULE" and name the rule "allow-tomcat".
+The left of the page should display a submenu, click "Firewall rules".  
+Click "CREATE FIREWALL RULE" and name the rule "allow-tomcat".  
 Scroll down and select targets. From the drop down menu, click
-"All instances in the network".
-Change the Source IP ranges to "0.0.0.0/0".
-Click the "Allow all" radio button in Protocols and ports.
+"All instances in the network".  
+Change the Source IP ranges to "0.0.0.0/0".  
+Click the "Allow all" radio button in Protocols and ports.  
 CREATE
 
 Use the top left menu to navigate back over to VM instances through the Compute
-engine.
+engine.  
 Click SSH under connect on your created instance and allow the window to pop up
-and transfer keys to your instance.
+and transfer keys to your instance.  
 
 Commands:
 ~~~
@@ -113,7 +113,7 @@ sudo systemctl status tomcat.service
 ~~~
 
 ### Check if Tomcat is running.
-Ensure TOMCAT is running!!!!! Any issues can be found in /opt/tomcat/logs.
+Ensure TOMCAT is running!!!!! Any issues can be found in /opt/tomcat/logs.  
 To do this, enter the following lines:
 
 ~~~
@@ -177,9 +177,9 @@ htttp://externaladdress:8080/Random.jsp to access the random number.
 
 
 ### Navigate to VM
-If you haven't already.
+If you haven't already.  
 Use the top left menu to navigate back over to VM instances through the Compute
-engine.
+engine.  
 Click SSH under connect on your created instance and allow the window to pop up
 and transfer keys to your instance.
 
