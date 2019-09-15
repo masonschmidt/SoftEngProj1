@@ -9,7 +9,7 @@ you can start both servers on the same machine by following them back to back.
 [Java Setup with Tomcat](#javasetup)  
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
-[Starting a Java server using App Engine](#appenginejava)
+[Starting a Java server using App Engine](#appenginejava)  
 [Starting a Python server using App Engine](#appenginepython)
 
 <a name="vmsetup"/>
