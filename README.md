@@ -336,14 +336,15 @@ give it a project name and click create
 open cloud shell and activate cloud shell 
 
 in the shell do the following commands:
-
+~~~
 git clone https://github.com/GoogleCloudPlatform/appengine-try-java
-
+~~~
+~~~
 cd cd appengine-try-java
 nano /src/main/java/myapp/DemoServlet.java
-
+~~~
 Delete the code in DemoServlet.java and copy paste the following code and save 
-
+~~~
 package myapp;
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
@@ -360,13 +361,14 @@ public class DemoServlet extends HttpServlet {
   }
 }
 
-
+~~~
+~~~
 navigate back to appengine-try-java
 
 nano /src/main/webapp/index.html
-
+~~~
 Delete the code in index.html and copy paste the following code and save 
-
+~~~
 <!doctype html>
 <html>
   <head>
@@ -384,21 +386,21 @@ $(document).ready(function() {
     </script>
   </body>
 </html>
-
+~~~
 navigate back to appengine-try-java
 
 to test if its working run the following command 
-
+~~~
 mvn appengine:run
-
+~~~
 click on the web preview to see it on a browser 
 
 To Deploy it 
-
+~~~
 gcloud app create
 
 gcloud config set project [project_name]
 mvn appengine:deploy
-
+~~~
 Go to 
 [project_name].appspot.com.
