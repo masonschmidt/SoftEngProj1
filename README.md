@@ -9,6 +9,7 @@ you can start both servers on the same machine by following them back to back.
 [Java Setup with Tomcat](#javasetup)  
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
+[Starting a server Java using App Engine](#appenginejava)
 
 <a name="vmsetup"/>
 
@@ -325,16 +326,17 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 sudo systemctl start tomcat
 ~~~
 
+<a name="appenginejava"/>
 
 ## How to Run it on App Engine JAVA
-Go to google cloud dashboard page 
+Go to google cloud dashboard page
 
-Click the Select from drop-down list at the top of the page. 
-click on new project on top right corner 
- 
-give it a project name and click create 
+Click the Select from drop-down list at the top of the page.
+click on new project on top right corner
 
-open cloud shell and activate cloud shell 
+give it a project name and click create
+
+open cloud shell and activate cloud shell
 
 in the shell do the following commands:
 ~~~
@@ -344,7 +346,7 @@ git clone https://github.com/GoogleCloudPlatform/appengine-try-java
 cd cd appengine-try-java
 nano /src/main/java/myapp/DemoServlet.java
 ~~~
-Delete the code in DemoServlet.java and copy paste the following code and save 
+Delete the code in DemoServlet.java and copy paste the following code and save
 ~~~
 package myapp;
 import java.io.IOException;
@@ -363,12 +365,13 @@ public class DemoServlet extends HttpServlet {
 }
 
 ~~~
-~~~
+
 navigate back to appengine-try-java
 
+~~~
 nano /src/main/webapp/index.html
 ~~~
-Delete the code in index.html and copy paste the following code and save 
+Delete the code in index.html and copy paste the following code and save
 ~~~
 <!doctype html>
 <html>
@@ -390,18 +393,18 @@ $(document).ready(function() {
 ~~~
 navigate back to appengine-try-java
 
-to test if its working run the following command 
+to test if its working run the following command
 ~~~
 mvn appengine:run
 ~~~
-click on the web preview to see it on a browser 
+click on the web preview to see it on a browser
 
-To Deploy it 
+To Deploy it
 ~~~
 gcloud app create
 
 gcloud config set project [project_name]
 mvn appengine:deploy
 ~~~
-Go to 
+Go to
 [project_name].appspot.com.
