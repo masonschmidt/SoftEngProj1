@@ -324,3 +324,84 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 ~~~
 sudo systemctl start tomcat
 ~~~
+
+
+## How to Run it on App Engine JAVA
+Go to google cloud dashboard page 
+
+Click the Select from drop-down list at the top of the page. 
+click on new project on top right corner 
+ 
+give it a project name and click create 
+
+open cloud shell and activate cloud shell 
+
+in the shell do the following commands:
+~~~
+git clone https://github.com/GoogleCloudPlatform/appengine-try-java
+~~~
+~~~
+cd cd appengine-try-java
+nano /src/main/java/myapp/DemoServlet.java
+~~~
+Delete the code in DemoServlet.java and copy paste the following code and save 
+~~~
+package myapp;
+import java.io.IOException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.lang.Math;
+public class DemoServlet extends HttpServlet {
+  @Override
+  public void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws IOException {
+    resp.setContentType("text/plain");
+    int random = (int)(Math.random() * 1000000 + 1);
+    resp.getWriter().println("{ \"name\": " + random + " }");
+  }
+}
+
+~~~
+~~~
+navigate back to appengine-try-java
+
+nano /src/main/webapp/index.html
+~~~
+Delete the code in index.html and copy paste the following code and save 
+~~~
+<!doctype html>
+<html>
+  <head>
+    <title>App Engine Demo</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="result">Loading...</div>
+    <script>
+$(document).ready(function() {
+  $.getJSON('/demo', function(data) {
+    $('#result').html(data.name);
+  });
+});
+    </script>
+  </body>
+</html>
+~~~
+navigate back to appengine-try-java
+
+to test if its working run the following command 
+~~~
+mvn appengine:run
+~~~
+click on the web preview to see it on a browser 
+
+To Deploy it 
+~~~
+gcloud app create
+
+gcloud config set project [project_name]
+mvn appengine:deploy
+~~~
+Go to 
+[project_name].appspot.com.
