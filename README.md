@@ -5,10 +5,10 @@ you can start both servers on the same machine by following them back to back.
 
 ## Table of Contents
 
-[VM Setup](#vm setup)
+[VM Setup](#vmsetup)
 
+<a name="vmsetup"/>
 
-<a name="vm setup"/>
 ## VM Setup
 What is needed:  
 Access to Google Cloud Platform  
