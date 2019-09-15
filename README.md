@@ -9,7 +9,8 @@ you can start both servers on the same machine by following them back to back.
 [Java Setup with Tomcat](#javasetup)  
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
-[Starting a server Java using App Engine](#appenginejava)
+[Starting a Java server using App Engine](#appenginejava)  
+[Starting a Python server using App Engine](#appenginepython)
 
 <a name="vmsetup"/>
 
@@ -326,16 +327,17 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 sudo systemctl start tomcat
 ~~~
 
+<a name="appenginejava"/>
 
 ## How to Run it on App Engine Java
-Go to google cloud dashboard page 
+Go to google cloud dashboard page
 
-Click the Select from drop-down list at the top of the page. 
-click on new project on top right corner 
- 
-give it a project name and click create 
+Click the Select from drop-down list at the top of the page.
+click on new project on top right corner
 
-open cloud shell and activate cloud shell 
+give it a project name and click create
+
+open cloud shell and activate cloud shell
 
 in the shell do the following commands:
 ~~~
@@ -371,7 +373,7 @@ navigate back to appengine-try-java
 
 nano /src/main/webapp/index.html
 ~~~
-Delete the code in index.html and copy paste the following code and save 
+Delete the code in index.html and copy paste the following code and save
 
 ~~~
 <!doctype html>
@@ -394,13 +396,13 @@ $(document).ready(function() {
 ~~~
 navigate back to appengine-try-java
 
-to test if its working run the following command 
+to test if its working run the following command
 ~~~
 mvn appengine:run
 ~~~
-click on the web preview to see it on a browser 
+click on the web preview to see it on a browser
 
-To Deploy it 
+To Deploy it
 ~~~
 gcloud app create
 
@@ -408,28 +410,29 @@ gcloud config set project [project_name]
 mvn appengine:deploy
 ~~~
 
-Go to 
+Go to
 [project_name].appspot.com.
 
+<a name="appenginepython"/>
+
 ## How to Run it on App Engine Python
-Go to google cloud dashboard page 
+Go to google cloud dashboard page
 
-Click the Select from drop-down list at the top of the page. 
-click on new project on top right corner 
- 
-give it a project name and click create 
+Click the Select from drop-down list at the top of the page.
+click on new project on top right corner
 
-open cloud shell and activate cloud shell 
+give it a project name and click create
+
+open cloud shell and activate cloud shell
 
 in the shell do the following commands:
 ~~~
-
 git clone https://github.com/GoogleCloudPlatform/python-docs-samples
 cd python-docs-samples/appengine/standard_python37/hello_world
 
 nano main.py
 ~~~
-Delete the code in main.py and copy paste the following code and save 
+Delete the code in main.py and copy paste the following code and save
 ~~~
 from flask import Flask
 app = Flask(__name__)
@@ -443,8 +446,8 @@ if __name__ == "__main__":
   app.run(host='0.0.0.0', port=8081)
 ~~~
 
-to test if its working run the following command 
-click on the web preview to see it on a browser 
+to test if its working run the following command
+click on the web preview to see it on a browser
 
 ~~~
 virtualenv --python python3~/envs/hello_world
@@ -456,13 +459,12 @@ pip install -r requirements.txt
 python main.py
 ~~~
 
-To Deploy it 
+To Deploy it
 ~~~
-gcloud app create //skip this if app is already created 
+gcloud app create //skip this if app is already created
 gcloud app deploy app.yaml --project skilled-eon-251901
-
 ~~~
 
-Go to 
+Go to
 
 [project_name].appspot.com
