@@ -9,7 +9,8 @@ you can start both servers on the same machine by following them back to back.
 [Java Setup with Tomcat](#javasetup)  
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
-[Starting a server Java using App Engine](#appenginejava)
+[Starting a Java server using App Engine](#appenginejava)  
+[Starting a Python server using App Engine](#appenginepython)
 
 <a name="vmsetup"/>
 
@@ -73,7 +74,7 @@ sudo nano /etc/environment
 ~~~
 
 
-add Following line to end of document and save:
+Add the following line to end of document and save:
 ~~~
 JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64"
 ~~~
@@ -86,7 +87,7 @@ echo $JAVA_HOME
 sudo nano /etc/systemd/system/tomcat.service
 ~~~
 
-Add This to the file tomcat.service
+Add this to the file tomcat.service
 
 ~~~
 [Unit]
@@ -143,10 +144,10 @@ sudo chown -R tomcat /opt/tomcat
 check if you did a good job by using the following command. The external address
 is the ip of your VM, which you can find on the VM instances page in compute engine.
 ~~~
-curl -g -6 "http://extrenaladdress:8080/"
+curl -g -6 "http://externaladdress:8080/"
 ~~~
 
-Next create the jsp file.
+Next, create the jsp file.
 
 ~~~
 sudo chown -R [Username]:[Username] /opt/tomcat/
@@ -326,9 +327,10 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 sudo systemctl start tomcat
 ~~~
 
+<a name="appenginejava"/>
 
 ## How to Run it on App Engine Java
-Go to google cloud dashboard page 
+Go to google cloud dashboard page
 
 Click the Select from drop-down list at the top of the page. 
 click on new project on top right corner 
@@ -370,6 +372,7 @@ Navigate back to appengine-try-java
 ~~~
 nano /src/main/webapp/index.html
 ~~~
+
 Delete the code in index.html and copy paste the following code and save: 
 
 ~~~
@@ -393,6 +396,7 @@ $(document).ready(function() {
 ~~~
 Navigate back to appengine-try-java.
 
+<<<<<<< HEAD
 To test if it's working run the following command: 
 ~~~ 
 mvn appengine:run
@@ -405,6 +409,7 @@ Click Preview on port 8080.
 
 
 To deploy the project: 
+
 ~~~
 gcloud app create
 
@@ -412,10 +417,13 @@ gcloud config set project [project_name]
 mvn appengine:deploy
 ~~~
 
-Go to 
+Go to
 [project_name].appspot.com.
 
+<a name="appenginepython"/>
+
 ## How to Run it on App Engine Python
+
 Go to Google Cloud dashboard page. 
 
 Click the Select from drop-down list at the top of the page. 
@@ -425,15 +433,17 @@ Give it a project name and click Create.
 
 Open cloud shell and activate cloud shell. 
 
+
 In the shell do the following commands:
 ~~~
-
 git clone https://github.com/GoogleCloudPlatform/python-docs-samples
 cd python-docs-samples/appengine/standard_python37/hello_world
 
 nano main.py
 ~~~
+
 Delete the code in main.py and copy paste the following code and save: 
+
 ~~~
 from flask import Flask
 app = Flask(__name__)
@@ -466,10 +476,10 @@ Click on Preview on port 8080.
 
 
 To deploy the project: 
-~~~
-gcloud app create //skip this if app is already created 
-gcloud app deploy app.yaml --project skilled-eon-251901
 
+~~~
+gcloud app create //skip this if app is already created
+gcloud app deploy app.yaml --project skilled-eon-251901
 ~~~
 
 To see the project deployed, go to: 
