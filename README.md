@@ -3,6 +3,15 @@
 Here the instruction for starting a server for both java and python. If you want
 you can start both servers on the same machine by following them back to back.
 
+## Table of Contents
+
+[VM Setup](#vmsetup)  
+[Java Setup with Tomcat](#javasetup)  
+[Python Setup with nginx and uwsgi](#pythonsetup)  
+[Restarting a previously setup Server](#restarting)  
+
+<a name="vmsetup"/>
+
 ## VM Setup
 What is needed:  
 Access to Google Cloud Platform  
@@ -26,6 +35,8 @@ Open the Menu back up at top left and scroll down the menu and hover
 “VPC NETWORK” and click External IP addresses.
 At the External IP addresses page, select where your instance says Ephemeral
 and change to static. Give it a cool name.
+
+<a name ="javasetup"/>
 
 ## Java Setup with tomcat
 The left of the page should display a submenu, click "Firewall rules".  
@@ -171,6 +182,8 @@ sudo systemctl start tomcat
 Your server should be running! Go to you browser and type in
 htttp://externaladdress:8080/Random.jsp to access the random number.
 
+<a name="pythonsetup"/>
+
 ## Python setup with nginx and uwsgi
 
 
@@ -294,7 +307,10 @@ sudo chown -R username:username /var/log/uwsgi
 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 ~~~
 
-To test if it is up and running go to http://externaladdress/
+To test if it is up and running go a browser and go to the url  
+http://externaladdress/
+
+<a name="restarting"/>
 
 ## Restarting a python server.
 ~~~
