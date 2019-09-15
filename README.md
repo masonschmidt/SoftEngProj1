@@ -9,7 +9,8 @@ you can start both servers on the same machine by following them back to back.
 [Java Setup with Tomcat](#javasetup)  
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
-[Starting a server Java using App Engine](#appenginejava)
+[Starting a Java server using App Engine](#appenginejava)
+[Starting a Python server using App Engine](#appenginepython)
 
 <a name="vmsetup"/>
 
@@ -411,6 +412,8 @@ mvn appengine:deploy
 Go to
 [project_name].appspot.com.
 
+<a name="appenginepython"/>
+
 ## How to Run it on App Engine Python
 Go to google cloud dashboard page
 
@@ -423,7 +426,6 @@ open cloud shell and activate cloud shell
 
 in the shell do the following commands:
 ~~~
-
 git clone https://github.com/GoogleCloudPlatform/python-docs-samples
 cd python-docs-samples/appengine/standard_python37/hello_world
 
@@ -460,7 +462,6 @@ To Deploy it
 ~~~
 gcloud app create //skip this if app is already created
 gcloud app deploy app.yaml --project skilled-eon-251901
-
 ~~~
 
 Go to
