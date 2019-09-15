@@ -1,6 +1,6 @@
 # SoftEngProj1
 
-Here the instruction for starting a server for both java and python. If you want
+Here are the instruction for starting a server for both java and python. If you want
 you can start both servers on the same machine by following them back to back.
 
 ## Table of Contents
