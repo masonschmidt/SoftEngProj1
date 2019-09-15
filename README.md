@@ -1,6 +1,6 @@
 # SoftEngProj1
 
-Here the instruction for starting a server for both java and python. If you want
+Here are the instruction for starting a server for both java and python. If you want
 you can start both servers on the same machine by following them back to back.
 
 ## Table of Contents
@@ -9,6 +9,7 @@ you can start both servers on the same machine by following them back to back.
 [Java Setup with Tomcat](#javasetup)  
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
+[Starting a server Java using App Engine](#appenginejava)
 
 <a name="vmsetup"/>
 
@@ -180,7 +181,7 @@ sudo systemctl start tomcat
 ~~~
 
 Your server should be running! Go to you browser and type in
-htttp://externaladdress:8080/Random.jsp to access the random number.
+http://externaladdress:8080/Random.jsp to access the random number.
 
 <a name="pythonsetup"/>
 
@@ -325,6 +326,7 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 sudo systemctl start tomcat
 ~~~
 
+
 ## How to Run it on App Engine Java
 Go to google cloud dashboard page 
 
@@ -343,7 +345,8 @@ git clone https://github.com/GoogleCloudPlatform/appengine-try-java
 cd cd appengine-try-java
 nano /src/main/java/myapp/DemoServlet.java
 ~~~
-Delete the code in DemoServlet.java and copy paste the following code and save 
+
+Delete the code in DemoServlet.java and copy paste the following code and save
 ~~~
 package myapp;
 import java.io.IOException;
@@ -362,12 +365,14 @@ public class DemoServlet extends HttpServlet {
 }
 
 ~~~
+
 ~~~
 navigate back to appengine-try-java
 
 nano /src/main/webapp/index.html
 ~~~
 Delete the code in index.html and copy paste the following code and save 
+
 ~~~
 <!doctype html>
 <html>
@@ -402,6 +407,7 @@ gcloud app create
 gcloud config set project [project_name]
 mvn appengine:deploy
 ~~~
+
 Go to 
 [project_name].appspot.com.
 
@@ -456,7 +462,6 @@ gcloud app create //skip this if app is already created
 gcloud app deploy app.yaml --project skilled-eon-251901
 
 ~~~
-
 
 Go to 
 
