@@ -180,7 +180,7 @@ sudo systemctl start tomcat
 ~~~
 
 Your server should be running! Go to you browser and type in
-htttp://externaladdress:8080/Random.jsp to access the random number.
+http://externaladdress:8080/Random.jsp to access the random number.
 
 <a name="pythonsetup"/>
 
