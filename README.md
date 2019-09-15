@@ -5,10 +5,10 @@ you can start both servers on the same machine by following them back to back.
 
 ## Table of Contents
 
-[VM Setup](#vmsetup)
-[Java Setup with Tomcat](#javasetup)
-[Python Setup with nginx and uwsgi](#pythonsetup)
-[Restarting a previously setup Server](#restarting)
+[VM Setup](#vmsetup)  
+[Java Setup with Tomcat](#javasetup)  
+[Python Setup with nginx and uwsgi](#pythonsetup)  
+[Restarting a previously setup Server](#restarting)  
 
 <a name="vmsetup"/>
 
