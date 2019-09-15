@@ -3,6 +3,12 @@
 Here the instruction for starting a server for both java and python. If you want
 you can start both servers on the same machine by following them back to back.
 
+## Table of Contents
+
+[VM Setup](#vm setup)
+
+
+<a name="vm setup"/>
 ## VM Setup
 What is needed:  
 Access to Google Cloud Platform  
@@ -294,7 +300,8 @@ sudo chown -R username:username /var/log/uwsgi
 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 ~~~
 
-To test if it is up and running go to http://externaladdress/
+To test if it is up and running go a browser and go to the url  
+http://externaladdress/
 
 ## Restarting a python server.
 ~~~
