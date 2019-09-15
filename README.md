@@ -328,7 +328,7 @@ sudo systemctl start tomcat
 
 <a name="appenginejava"/>
 
-## How to Run it on App Engine JAVA
+## How to Run it on App Engine Java
 Go to google cloud dashboard page
 
 Click the Select from drop-down list at the top of the page.
