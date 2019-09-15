@@ -181,7 +181,7 @@ sudo systemctl start tomcat
 ~~~
 
 Your server should be running! Go to you browser and type in
-htttp://externaladdress:8080/Random.jsp to access the random number.
+http://externaladdress:8080/Random.jsp to access the random number.
 
 <a name="pythonsetup"/>
 
@@ -326,7 +326,6 @@ uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
 sudo systemctl start tomcat
 ~~~
 
-<a name="appenginejava"/>
 
 ## How to Run it on App Engine Java
 Go to google cloud dashboard page
@@ -346,6 +345,7 @@ git clone https://github.com/GoogleCloudPlatform/appengine-try-java
 cd cd appengine-try-java
 nano /src/main/java/myapp/DemoServlet.java
 ~~~
+
 Delete the code in DemoServlet.java and copy paste the following code and save
 ~~~
 package myapp;
@@ -366,12 +366,13 @@ public class DemoServlet extends HttpServlet {
 
 ~~~
 
+~~~
 navigate back to appengine-try-java
 
-~~~
 nano /src/main/webapp/index.html
 ~~~
 Delete the code in index.html and copy paste the following code and save
+
 ~~~
 <!doctype html>
 <html>
@@ -406,5 +407,62 @@ gcloud app create
 gcloud config set project [project_name]
 mvn appengine:deploy
 ~~~
+
 Go to
 [project_name].appspot.com.
+
+## How to Run it on App Engine Python
+Go to google cloud dashboard page
+
+Click the Select from drop-down list at the top of the page.
+click on new project on top right corner
+
+give it a project name and click create
+
+open cloud shell and activate cloud shell
+
+in the shell do the following commands:
+~~~
+
+git clone https://github.com/GoogleCloudPlatform/python-docs-samples
+cd python-docs-samples/appengine/standard_python37/hello_world
+
+nano main.py
+~~~
+Delete the code in main.py and copy paste the following code and save
+~~~
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+  import random
+  return str(random.randint(1,1000001))
+
+if __name__ == "__main__":
+  app.run(host='0.0.0.0', port=8081)
+~~~
+
+to test if its working run the following command
+click on the web preview to see it on a browser
+
+~~~
+virtualenv --python python3~/envs/hello_world
+
+source ~/envs/hello_world/bin/activate
+
+pip install -r requirements.txt
+
+python main.py
+~~~
+
+To Deploy it
+~~~
+gcloud app create //skip this if app is already created
+gcloud app deploy app.yaml --project skilled-eon-251901
+
+~~~
+
+Go to
+
+[project_name].appspot.com
