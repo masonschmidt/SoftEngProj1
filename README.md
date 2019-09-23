@@ -1,5 +1,8 @@
 # SoftEngProj1
 
+This project can be found at https://github.com/masonschmidt/SoftEngProj1 for
+the best viewing experience and for companion files.
+
 Here are the instruction for starting a server for both java and python. If you want
 you can start both servers on the same machine by following them back to back.
 
