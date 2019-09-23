@@ -1,5 +1,8 @@
 # SoftEngProj1
 
+The Teams Site can be found at https://sooners.sharepoint.com/sites/SoftwareEngineeringTeam1/SitePages/Home.aspx 
+for any collaboration on this project.
+
 This project can be found at https://github.com/masonschmidt/SoftEngProj1 for
 the best viewing experience and for companion files.
 
