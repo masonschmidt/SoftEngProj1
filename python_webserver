@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USR="Glen5641"
+USR="glen5641"
 
 sudo add-apt-repository ppa:nginx/stable -y
 sudo apt-get update
@@ -10,13 +10,12 @@ sudo mkdir /var/www/demoapp
 sudo chown -R ubuntu:ubuntu /var/www/demoapp/
 cd /var/www/demoapp/
 sudo apt-get install python-virtualenv -y
-virtualenv venv
 sudo chown -R $USR:$USR /var/www/demoapp/
 virtualenv venv
 . venv/bin/activate
 pip install flask
 sudo ufw allow 8081
-sudo cp ~/SoftEngProj1/hello.py ./
+sudo cp ~/SoftEngProj1/hello.py
 sudo apt-get install build-essential python python-dev -y
 pip install uwsgi
 sudo rm /etc/nginx/sites-enabled/default
@@ -24,7 +23,7 @@ sudo cp ~/SoftEngProj1/demoapp_nginx.conf ./
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf /etc/nginx/conf.d/
 sudo /etc/init.d/nginx restart
-sudo cp ~/SoftEngProj1/demoapp_uwsgi.conf ./
+sudo cp ~/SoftEngProj1/demoapp_uwsgi.ini ./
 sudo mkdir -p /var/log/uwsgi
 sudo chown -R ubuntu:ubuntu /var/log/uwsgi
 sudo chown -R $USR:$USR /var/log/uwsgi
