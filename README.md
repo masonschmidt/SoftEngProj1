@@ -10,8 +10,8 @@ you can start both servers on the same machine by following them back to back.
 [Python Setup with nginx and uwsgi](#pythonsetup)  
 [Restarting a previously setup Server](#restarting)  
 [Starting a Java server using App Engine](#appenginejava)  
-[Starting a Python server using App Engine](#appenginepython)
-[Running the Random Timing Script](#randomtiming)
+[Starting a Python server using App Engine](#appenginepython)  
+[Running the Random Timing Script](#randomtiming)  
 
 <a name="vmsetup"/>
 
@@ -499,7 +499,16 @@ In this project, you can find an index.html file that contains the YAML String
 to be read by the RandomTiming.py file. The YAML contains IP Addresses that
 supply a random number by the webserver.
 
-Ensure you have Python installed. Once the project is cloned into, run the
+Ensure you have Python installed.
+
+Install the requests and pyaml dependencies using pip.
+
+~~~
+pip install pyyaml
+pip install requests
+~~~
+
+Once the project is cloned into, run the
 RandomTiming.py file by typing
 
 ~~~
