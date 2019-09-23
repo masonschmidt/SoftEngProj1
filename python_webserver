@@ -15,7 +15,7 @@ virtualenv venv
 . venv/bin/activate
 pip install flask
 sudo ufw allow 8081
-sudo cp ~/SoftEngProj1/hello.py
+sudo cp ~/SoftEngProj1/hello.py ./
 sudo apt-get install build-essential python python-dev -y
 pip install uwsgi
 sudo rm /etc/nginx/sites-enabled/default
