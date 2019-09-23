@@ -13,15 +13,15 @@ virtualenv venv
 . venv/bin/activate
 pip install flask
 sudo ufw allow 8081
-sudo cp ~/SoftEngProj1/hello.py ./
+sudo cp ~/SoftEngProj1/Python/hello.py ./
 sudo apt-get install build-essential python python-dev -y
 pip install uwsgi
 sudo rm /etc/nginx/sites-enabled/default
-sudo cp ~/SoftEngProj1/demoapp_nginx.conf ./
+sudo cp ~/SoftEngProj1/Python/demoapp_nginx.conf ./
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf
 sudo ln -s /var/www/demoapp/demoapp_nginx.conf /etc/nginx/conf.d/
 sudo /etc/init.d/nginx restart
-sudo cp ~/SoftEngProj1/demoapp_uwsgi.ini ./
+sudo cp ~/SoftEngProj1/Python/demoapp_uwsgi.ini ./
 sudo mkdir -p /var/log/uwsgi
 sudo chown -R ubuntu:ubuntu /var/log/uwsgi
 sudo chown -R $USER:$USER /var/log/uwsgi
