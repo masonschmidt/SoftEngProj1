@@ -1,0 +1,27 @@
+#!/bin/bash
+
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install default-jdk -y
+sudo groupadd tomcat
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+cd /tmp
+wget http://apache-mirror.8birdsvideo.com/tomcat/tomcat-9/v9.0.24/bin/apache-tomcat-9.0.24.tar.gz
+sudo mkdir /opt/tomcat/
+sudo tar xzvf apache-tomcat-9.0.24.tar.gz -C /opt/tomcat --strip-components=1
+cd /opt/tomcat/
+sudo chgrp -R tomcat /opt/tomcat
+sudo chmod -R g+r conf
+sudo chmod g+x conf
+sudo chown -R tomcat webapps/ work/ temp/ logs/
+sudo update-java-alternatives -l
+sudo echo JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64" >> /etc/environment
+source /etc/environment
+sudo cp tomcat.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl start tomcat
+sudo chown -R $USER:$USER /opt/tomcat/
+sudo cp Random.jsp /opt/tomcat/webapps/ROOT/
+sudo chown -R tomcat /opt/tomcat/
+sudo systemctl stop tomcat
+sudo systemctl daemon-reload
+sudo systemctl start tomcat
