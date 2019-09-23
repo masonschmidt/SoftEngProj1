@@ -8,3 +8,4 @@
 | F    | Record Timings in files                   | 1/2 Day       | E            |
 | G    | Test Timings                              | 1 Hour        | F            |
 | H    | Introduce .YAML file w/ IPs to Script     | 1 Day         | D            |
+| I    | Parse .YAML file to create list of IPs    | 1 Day         | H            |
