@@ -20,6 +20,8 @@ if __name__ == "__main__":
 
         location = i[0:i.find("@")]
         ip = i[i.find("@")+1:len(i)]
+        if ip[0] != 'h':
+            ip = 'http://' + ip
 
         ## Step through each IP Address recording Time
         start = time.time()
