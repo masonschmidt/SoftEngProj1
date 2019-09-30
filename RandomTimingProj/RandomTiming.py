@@ -15,14 +15,17 @@ if __name__ == "__main__":
 
     for i in data['addresses']:
 
+        location = i[0:i.find("@")]
+        ip = i[i.find("@")+1:len(i)]
+
         ## Step through each IP Address recording Time
         start = time.time()
 
-        res = requests.get(i)
+        res = requests.get(ip)
 
         ## Get and Print the Random Number
         result = res.text[(res.text.find("<h1>")+4):(res.text.find("</h1>"))]
-        print(i + " :: " + result)
+        print("% 40s        % 30s         %7.7f" %(location, ip, result))
 
         ## Collect final time in Milliseconds
         ## and print difference in seconds
