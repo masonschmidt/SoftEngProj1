@@ -11,6 +11,9 @@ if __name__ == "__main__":
     ## Use YAML library to parse the YAML into an object
     data = yaml.load(yamlfile, Loader=yaml.FullLoader)
 
+    print("||         Location          |                     IP Address                     |     Runtime     ||")
+    print("------------------------------------------------------------------------------------------------------")
+
     total_start = time.time()
 
     for i in data['addresses']:
@@ -24,14 +27,11 @@ if __name__ == "__main__":
         res = requests.get(ip)
 
         ## Get and Print the Random Number
-        result = res.text[(res.text.find("<h1>")+4):(res.text.find("</h1>"))]
-        print("% 40s        % 30s         %7.7f" %(location, ip, result))
+        result = res.text[(res.text.find("<h1>")+1):(res.text.find("</h1>")+1)]
 
-        ## Collect final time in Milliseconds
-        ## and print difference in seconds
         finish = time.time()
-        print('Runtime is ' + str((finish - start)/1000) + ' seconds')
-        print()
+        print("|| %25s | %50s | %15.7f ||" %(location, ip, ((finish - start)/1000)))
+
 
     total_finish = time.time()
     print('Total Runtime of the Program is ' + str((total_finish - total_start)/1000) + ' seconds')
