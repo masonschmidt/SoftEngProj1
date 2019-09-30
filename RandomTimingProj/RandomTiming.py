@@ -15,6 +15,10 @@ if __name__ == "__main__":
     print("||_______|__________________________________________|___________________________________________________________________|______________||")
 
     total_start = time.time()
+    min = ''
+    minTime = 100
+    max = ''
+    maxTime = 0
     j = 1
     for i in data['addresses']:
 
@@ -33,11 +37,20 @@ if __name__ == "__main__":
             result = res.text[(res.text.find("<h1>")+1):(res.text.find("</h1>")+1)]
 
             finish = time.time()
-            print("|| %5d | %40s | %65s | %12.7f ||" %(j, location, ip, ((finish - start)/1000)))
+            print("|| %5d | %40s | %65s | %12.7f ||" %(j, location, ip, (finish - start)))
+            if (finish - start) < minTime:
+                minTime = finish - start
+                min = "|| %5d | %40s | %65s | %12.7f ||" %(j, location, ip, (finish - start))
+            if (finish - start) > maxTime:
+                maxTime = finish - start
+                max = "|| %5d | %40s | %65s | %12.7f ||" %(j, location, ip, (finish - start))
         except:
             print("|| %5d |------------------------------------------|----------------------ERROR-CAUGHT---------------------------------|--------------||" %(j))
         j = j + 1
 
     total_finish = time.time()
     print()
-    print('Total Runtime of the Program is ' + str((total_finish - total_start)/1000) + ' seconds')
+    print("Maximum:\n %s" %max)
+    print("Minimum:\n %s" %min)
+    print()
+    print('Total Runtime of the Program is ' + str(total_finish - total_start) + ' seconds')
