@@ -11,29 +11,32 @@ if __name__ == "__main__":
     ## Use YAML library to parse the YAML into an object
     data = yaml.load(yamlfile, Loader=yaml.FullLoader)
 
-    print("||         Location          |                     IP Address                     |     Runtime     ||")
-    print("------------------------------------------------------------------------------------------------------")
+    print("||  IP#  |                Location                  |                             IP Address                            |    Runtime   ||")
+    print("||_______|__________________________________________|___________________________________________________________________|______________||")
 
     total_start = time.time()
-
+    j = 1
     for i in data['addresses']:
 
-        location = i[0:i.find("@")]
-        ip = i[i.find("@")+1:len(i)]
-        if ip[0] != 'h':
-            ip = 'http://' + ip
+        try:
+            location = i[0:i.find("@")]
+            ip = i[i.find("@")+1:len(i)]
+            if ip[0] != 'h':
+                ip = 'http://' + ip
 
-        ## Step through each IP Address recording Time
-        start = time.time()
+            ## Step through each IP Address recording Time
+            start = time.time()
 
-        res = requests.get(ip)
+            res = requests.get(ip)
 
-        ## Get and Print the Random Number
-        result = res.text[(res.text.find("<h1>")+1):(res.text.find("</h1>")+1)]
+            ## Get and Print the Random Number
+            result = res.text[(res.text.find("<h1>")+1):(res.text.find("</h1>")+1)]
 
-        finish = time.time()
-        print("|| %25s | %50s | %15.7f ||" %(location, ip, ((finish - start)/1000)))
-
+            finish = time.time()
+            print("|| %5d | %40s | %65s | %12.7f ||" %(j, location, ip, ((finish - start)/1000)))
+        except:
+            print("|| %5d |------------------------------------------|----------------------ERROR-CAUGHT---------------------------------|--------------||" %(j))
+        j = j + 1
 
     total_finish = time.time()
     print()
