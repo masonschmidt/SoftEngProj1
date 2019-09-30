@@ -36,4 +36,5 @@ if __name__ == "__main__":
 
 
     total_finish = time.time()
+    print()
     print('Total Runtime of the Program is ' + str((total_finish - total_start)/1000) + ' seconds')
